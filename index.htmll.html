@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .image-container {
+            position: absolute;
+            left: 4%;
+            top: 50%;
+            width: 180px;
+            height: 180px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+</body>
+
+<script>
+window.onload = function () {
+    function createImageContainer(src, left, bottom) {
+        const imageContainer = document.createElement('div');
+        imageContainer.className = 'image-container';
+        imageContainer.style.left = left;
+        imageContainer.style.bottom = bottom;
+        const image = document.createElement('img');
+        image.src = src;
+        image.alt = 'Bouncing Image';
+        imageContainer.appendChild(image);
+        document.body.appendChild(imageContainer);
+        return imageContainer;
+    }
+
+    const imagePaths = [
+        'h__1_-removebg-preview.png',
+        'ooo-removebg-preview.png',
+        'b-removebg-preview.png',
+        'bb-removebg-preview.png',
+        'y__1_-removebg-preview.png',
+        'd-removebg-preview.png',
+        'o__1_-removebg-preview.png',
+        'oo-removebg-preview.png',
+        'bbb-removebg-preview.png',
+        'yy-removebg-preview.png',
+    ];
+
+    const columns = 10;
+    const rows = 1;
+
+    const containerWidth = 100;
+    const containerHeight = 100;
+    const spacingX = 30;
+    const spacingY = 30;
+
+    const imageContainers = [];
+    for (let i = 0; i < imagePaths.length; i++) {
+        const column = i % columns;
+        const row = Math.floor(i / columns);
+        const left = column * (containerWidth + spacingX) + 'px';
+        const bottom = row * (containerHeight + spacingY) + 'px';
+        const imageContainer = createImageContainer(imagePaths[i], left, bottom);
+        imageContainers.push(imageContainer);
+    }
+
+    const animationSettings = {
+        duration: 2000,
+        easing: 'easeOutElastic',
+        loop: true,
+        direction: 'alternate',
+        translateY: '-100%',
+        targets: imageContainers,
+    };
+
+    anime(animationSettings);
+
+    // Add a click event listener to the document body to redirect to another webpage
+    document.body.addEventListener('click', () => {
+        // Replace 'your_destination_url' with the URL of the webpage you want to redirect to
+        window.location.href = 'index.html.html';
+    });
+};
+</script>
+</html>
